@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kumar Agencies Distributor — FMCG Wholesale Portal</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- FontAwesome for Premium Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body>
+
+  <div class="app-container" id="app">
+
+    <!-- 1. LOGIN SCREEN -->
+    <div class="login-screen" id="login-view">
+      <div class="login-card" style="max-width:500px;">
+        <div class="login-logo">
+          <i class="fa-solid fa-truck-ramp-box" style="font-size: 42px; color: var(--primary); margin-bottom: var(--space-sm);"></i>
+          <h1>Kumar Agencies Distributor</h1>
+          <p>FMCG Wholesale Portal</p>
+        </div>
+
+        <!-- Auth Tabs -->
+        <div class="auth-tabs">
+          <button class="auth-tab active" id="tab-signin-btn"><i class="fa-solid fa-right-to-bracket"></i> Sign In</button>
+          <button class="auth-tab" id="tab-register-btn"><i class="fa-solid fa-user-plus"></i> Register</button>
+        </div>
+
+        <!-- LOGIN FORM -->
+        <form class="login-form" id="login-form" onsubmit="return false;">
+          <div class="login-error hidden" id="login-error-msg"></div>
+          <div class="form-group">
+            <label class="form-label" for="login-username">Username</label>
+            <input type="text" id="login-username" class="form-input" placeholder="e.g. admin" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="login-password">Password</label>
+            <input type="password" id="login-password" class="form-input" placeholder="••••••••" required />
+          </div>
+          <button type="submit" class="btn btn-primary w-full mt-sm" id="btn-login-submit">
+            <i class="fa-solid fa-right-to-bracket"></i> Sign In
+          </button>
+        </form>
+
+        <!-- REGISTRATION FORM -->
+        <form class="login-form hidden" id="register-form" onsubmit="return false;">
+          <div class="login-error hidden" id="register-error-msg"></div>
+          <div class="form-row">
+            <div class="form-group form-col">
+              <label class="form-label" for="reg-name">Full Name *</label>
+              <input type="text" id="reg-name" class="form-input" placeholder="e.g. Anita Sharma" required />
+            </div>
+            <div class="form-group form-col">
+              <label class="form-label" for="reg-username">Username *</label>
+              <input type="text" id="reg-username" class="form-input" placeholder="e.g. anita1" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group form-col">
+              <label class="form-label" for="reg-password">Password *</label>
+              <input type="password" id="reg-password" class="form-input" placeholder="••••••••" required />
+            </div>
+            <div class="form-group form-col">
+              <label class="form-label" for="reg-confirm-password">Confirm Password *</label>
+              <input type="password" id="reg-confirm-password" class="form-input" placeholder="••••••••" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group form-col">
+              <label class="form-label" for="reg-email">Email Address</label>
+              <input type="email" id="reg-email" class="form-input" placeholder="email@example.com" />
+            </div>
+            <div class="form-group form-col">
+              <label class="form-label" for="reg-phone">Phone Number</label>
+              <input type="text" id="reg-phone" class="form-input" placeholder="+91 98765 43210" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="reg-business">Business / Shop Name</label>
+            <input type="text" id="reg-business" class="form-input" placeholder="e.g. Sharma General Store" />
+          </div>
+          <button type="submit" class="btn btn-primary w-full mt-sm" id="btn-register-submit">
+            <i class="fa-solid fa-user-plus"></i> Create Account
+          </button>
+        </form>
+
+        <div class="demo-credentials" id="demo-creds">
+          <strong>Demo Accounts:</strong><br/>
+          • Owner: <strong>admin</strong> / <strong>admin123</strong><br/>
+          • Employee: <strong>emp1</strong> / <strong>emp123</strong><br/>
+          • Customer: <strong>cust1</strong> / <strong>cust123</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. DASHBOARD VIEW -->
+    <div class="dashboard hidden" id="dashboard-view">
+
+      <!-- COLLAPSIBLE SIDEBAR -->
+      <aside class="sidebar" id="app-sidebar">
+        <!-- Sidebar Collapse Toggle Button -->
+        <button class="sidebar-toggle" id="sidebar-toggle-btn" title="Toggle Sidebar">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        <div class="sidebar-logo">
+          <i class="fa-solid fa-truck-ramp-box" style="font-size: 22px; color: var(--primary); flex-shrink:0;"></i>
+          <h2 id="sidebar-logo-text">Kumar Agencies Distributor</h2>
+        </div>
+
+        <!-- Sidebar Navigation Menu Items (Rendered dynamically based on permissions) -->
+        <nav class="sidebar-nav" id="sidebar-menu">
+          <!-- Dynamic navigation entries inserted here -->
+        </nav>
+
+        <!-- Current User Profile Card -->
+        <div class="sidebar-user">
+          <div class="avatar" id="user-avatar">U</div>
+          <div class="sidebar-user-info">
+            <div class="user-name" id="user-display-name">Loading...</div>
+            <div class="user-role" id="user-display-role">Loading...</div>
+          </div>
+          <button class="btn btn-icon btn-sm btn-secondary" id="logout-btn" title="Logout" style="margin-left: auto;">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          </button>
+        </div>
+      </aside>
+
+      <!-- MAIN CONTENT PANEL -->
+      <main class="main-content" id="main-content-view">
+        <header class="content-header">
+          <div>
+            <div class="breadcrumbs" id="breadcrumb-text">Dashboard / Products</div>
+            <h1 id="view-title">Products</h1>
+          </div>
+          <div class="header-actions" id="view-header-actions">
+            <!-- Dynamic view-level action buttons (e.g. "Add Product") -->
+          </div>
+        </header>
+
+        <!-- Rendered view goes here -->
+        <div id="view-content"></div>
+      </main>
+
+    </div>
+
+  </div>
+
+  <!-- 3. REUSABLE MODAL CONTAINER -->
+  <div class="modal-overlay hidden" id="app-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="modal-title">Modal Title</h3>
+        <button class="modal-close" id="modal-close-btn" title="Close dialog">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="modal-body" id="modal-body-content">
+        <!-- Rendered dynamically -->
+      </div>
+      <div class="modal-footer" id="modal-footer-actions">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. TOAST ALERTS CONTAINER -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- CORE JS MODULES -->
+  <script src="js/data.js"></script>
+  <script src="js/permissions.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/users.js"></script>
+  <!-- APPLICATION ENGINE -->
+  <script src="script.js"></script>
+</body>
+
+</html>
